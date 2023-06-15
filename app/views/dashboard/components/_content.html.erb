@@ -1,0 +1,16 @@
+<article class="content <%= options[:class] %>">
+    <div class="content__wrapper">
+        <% if options[:header].present? %>
+            <div class="content__header">
+                <div class="content__header__wrapper">
+                    <h3 class="content__header__title"><%= options.dig(:header, :title) %></h3>
+                    <%= options.dig(:header, :other)&.call %>
+                </div>
+                <hr class="content__header__separator"/>
+            </div>
+        <% end %>
+        <div class="content__data" id=<%= options[:id] %>>
+            <%= yield %>
+        </div>
+    </div>
+</article>

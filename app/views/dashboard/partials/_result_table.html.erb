@@ -1,0 +1,26 @@
+<table class="result-table" data-controller="partials--result-table">
+    <thead class="result-table__header">
+        <tr>
+            <th>Diagnosis</th>
+            <th>Status</th>
+            <th>Probability</th>
+        </tr>
+    </thead>
+    <tbody class="result-table__body">
+        <% ApplicationHelper::DIAGNOSIS.each do |result| %>
+            <%#
+                Get Probability data which is located at Index 1
+                Probability used for colorize rows
+                Color changes are handled by StimulusJS
+            %>
+            <tr
+                class="result-table__row"
+                data-partials--result-table-target="resultTableRow"
+                data-probability=<%= record[result][1].present? ? record[result][1].to_f : '' %>
+            >
+                <td><%= result.to_s.humanize.upcase %></td>
+                <% record[result].each do |data| %><td><%= data %></td><% end %>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

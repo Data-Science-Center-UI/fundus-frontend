@@ -1,0 +1,39 @@
+<div class="wrapper">
+    <%=
+        render 'dashboard/components/page_header',
+                title: 'Users',
+                description: 'Manage User Account of Doctor (Pathologist) or add user as an Admin.'
+    %>
+    <section class="contents-container" data-controller="detections">
+        <%= render 'dashboard/components/content', options: { header: { title: 'List of Users' } } do %>
+        <% end %>
+
+        <%=
+            render 'dashboard/components/content',
+                    options: {
+                        header: {
+                            title: 'Action to User',
+                            other: lambda do
+                                turbo_frame_tag target: 'user-action' do
+                                    link_to new_dashboard_user_path, title: 'Add new user' do
+                                        '<i class="bi bi-person-add" style="font-size: 1.5rem;"></i>'.html_safe
+                                    end
+                                end
+                            end
+                        },
+                        class: 'max-w-30',
+                        id: 'user'
+                    } do
+            %>
+            <%= turbo_frame_tag 'user-action' do %>
+                <%=
+                    render 'dashboard/components/result_empty',
+                            title: 'Nothing happens here',
+                            description: 'Show user detail by click one of User Data from list, or add one by click <i class="bi bi-person-add"></i> Button.',
+                            lottie_url: 'https://assets10.lottiefiles.com/packages/lf20_mf5j5kua.json'
+                %>
+            <% end %>
+        <% end %>
+   </section>
+    <%= render 'dashboard/components/page_footer' %>
+</div>

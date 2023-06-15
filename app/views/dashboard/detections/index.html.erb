@@ -1,0 +1,21 @@
+<div class="wrapper">
+    <%=
+        render 'dashboard/components/page_header',
+                title: 'Fundus Disease Detection',
+                description: 'Get fundus detection by filling patient data form and upload fundus image.'
+    %>
+    <section class="contents-container" data-controller="detections">
+        <%= render 'dashboard/components/content', options: { header: { title: 'Patient Data' }, id: 'detection-form' } do %>
+            <%= render 'dashboard/partials/detection_form' %>
+        <% end %>
+        <%= render 'dashboard/components/content', options: { header: { title: 'Detection Result' }, id: 'detection-result' } do %>
+            <%=
+                render 'dashboard/components/result_empty',
+                        title: 'Nothing happens here',
+                        description: 'Upload Fundus Image and Submit to get Detection Result.',
+                        lottie_url: 'https://assets4.lottiefiles.com/packages/lf20_iikbn1ww.json'
+            %>
+        <% end %>
+    </section>
+    <%= render 'dashboard/components/page_footer' %>
+</div>

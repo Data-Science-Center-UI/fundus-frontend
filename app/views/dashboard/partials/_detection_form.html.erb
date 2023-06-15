@@ -1,0 +1,36 @@
+<%= form_with class: 'detection-form form', data: { controller: 'partials--detection-form' } do |f| %>
+    <div class="form__input-group">
+        <%= f.label :fullname, class: 'form__input-group__label required' %>
+        <%= f.text_field :fullname, class: 'form__input-group__field', placeholder: 'e.g: Abdul Hakim Ghaniy', required: true %>
+    </div>
+    <div class="form__input-group">
+        <%= f.label :birthdate, class: 'form__input-group__label required' %>
+        <div class="form__input-group__field-group">
+            <%= f.number_field :birth_day, class: 'form__input-group__field', placeholder: 'Day. eg: 28', min: 1, max: 31, required: true, data: { 'partials--detection-form-target': 'birthDayField' } %>
+            <%= f.select :birth_month, options_for_select(ApplicationHelper::MONTHNAMES), { prompt: 'Select Month' }, class: 'form__input-group__field', required: true, data: { 'partials--detection-form-target': 'birthMonthField' } %>
+            <%= f.number_field :birth_year, class: 'form__input-group__field', placeholder: 'Year. e.g: 1998', min: 1900, max: DateTime.now.year, required: true, data: { action: "partials--detection-form#calculateAge" } %>
+        </div>
+    </div>
+    <div class="form__input-group">
+        <%= f.label :age, class: 'form__input-group__label required' %>
+        <%= f.number_field :age, class: 'form__input-group__field', placeholder: 'Auto filled by Birthdate', min: 0, readonly: true, data: { 'partials--detection-form-target': 'ageField' } %>
+    </div>
+    <div class="form__input-group">
+        <%= f.label :gender, class: 'form__input-group__label required' %>
+        <%= f.select :gender, options_for_select(ApplicationHelper::GENDER), { prompt: 'Select Gender' }, class: 'form__input-group__field', required: true %>
+    </div>
+    <div class="form__input-group">
+        <%= f.label :fundus_image, class: 'form__input-group__label required' %>
+        <%= f.label :fundus_image, class: 'file-uploader' do %>
+            <p class="file-uploader__label required">Drop File Here</p>
+            <span>or</span>
+            <%= f.file_field :fundus_image, class: 'form__input-group__field file-uploader__field', placeholder: 'Click here to upload', accept: '.jpg,.jpeg,.png', required: true %>
+
+            <%# Allowed type extensions %>
+            <span class="allowed-file-types">*only .jpg, .jpeg, .png are allowed.</span>
+        <% end %>
+    </div>
+    <div class="form__input-group">
+        <%= f.submit 'Get Result', class: 'form__input-group__button-submit' %>
+    </div>
+<% end %>

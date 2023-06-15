@@ -1,0 +1,69 @@
+.notification {
+    position: absolute;
+    right: 3rem;
+    top: 2rem;
+    padding:  1rem;
+    z-index: 1000;
+    max-width: fit-content;
+    border-radius: 10px;
+    color: #fff;
+    box-shadow: 0 3px 5px rgba(131, 118, 79, 0.8);
+}
+
+.notification__wrapper {
+    display: flex;
+    gap: 2rem
+}
+
+.notification__body {
+    min-width: 20rem;
+    max-width: 20rem;
+}
+
+.notification__body__type {
+    font-family: var(--font-raleway);
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.notification__body__value {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    line-height: 1rem;
+}
+
+.notification__hide {
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+/* Notification Color by Type */
+.notification--alert {
+    background-color: #FF4B4B;
+}
+
+.notification--notice {
+    background-color: #90d39b;
+}
+
+/* Notification Behavior */
+.notification--enter-from {
+    opacity: 0;
+    transform: translateX(1.5rem);
+}
+
+.notification--enter-to {
+    opacity: 1;
+    transform: translateX(0);
+}   
+
+.notification--leave-from {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.notification--leave-to {
+    opacity: 0;
+    transform: translateX(1.5rem);
+}

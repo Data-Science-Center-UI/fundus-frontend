@@ -1,0 +1,30 @@
+<div class="sidebar" data-controller="components--sidebar">
+    <div class="sidebar__top">
+        <%= link_to '/', class: 'sidebar__button-menu home-menu', data: { controller: 'popover', action: 'mouseenter->popover#show mouseleave->popover#hide' } do %>
+            <%= image_tag(asset_path('dsc-cropped-logo'), class: 'home-menu__image') %>
+            <%= render 'dashboard/components/tooltip', label: 'Homepage' %>
+        <% end %>
+        <% if current_user.admin? %>
+            <%= link_to dashboard_users_path, class: 'sidebar__button-menu', data: { 'components--sidebar-target': 'menuIcon', controller: 'popover', action: 'mouseenter->popover#show mouseleave->popover#hide' } do %>
+                <i class="bi bi-people"></i>
+                <%= render 'dashboard/components/tooltip', label: 'List of Users' %>
+            <% end %>
+        <% end %>
+        <% if current_user.doctor? %>
+            <%= link_to dashboard_detections_path, class: 'sidebar__button-menu', data: { 'components--sidebar-target': 'menuIcon', controller: 'popover', action: 'mouseenter->popover#show mouseleave->popover#hide' } do %>
+                <i class="bi bi-clipboard2-pulse"></i>
+                <%= render 'dashboard/components/tooltip', label: 'Fundus Detection' %>
+            <% end %>
+            <%= link_to dashboard_detection_reports_path, class: 'sidebar__button-menu', data: { 'components--sidebar-target': 'menuIcon', controller: 'popover', action: 'mouseenter->popover#show mouseleave->popover#hide' } do %>
+                <i class="bi bi-journal-medical"></i>
+                <%= render 'dashboard/components/tooltip', label: 'Fundus Detection Reports' %>
+            <% end %>
+        <% end %>
+    </div>
+    <div class="sidebar__bottom">
+        <%= button_to destroy_user_session_path, class: 'sidebar__button-menu profile-menu', method: :delete, data: { controller: 'popover', action: 'mouseenter->popover#show mouseleave->popover#hide' } do %>
+            <i class="bi bi-door-closed"></i>
+            <%= render 'dashboard/components/tooltip', label: 'Logout' %>
+        <% end %>
+    </div>
+</div>

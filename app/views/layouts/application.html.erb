@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fundus Disease Detection System - DSC UI</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "hotwire-livereload", defer: true if Rails.env.development? %>
+  </head>
+
+  <body>
+    <%= render 'dashboard/components/flash_message' %>
+    <%= yield %>
+  </body>
+</html>

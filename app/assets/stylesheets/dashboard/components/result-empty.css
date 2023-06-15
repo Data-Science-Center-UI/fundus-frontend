@@ -1,0 +1,34 @@
+.result__empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    /* Accomodate if animation inside Turbo Frame */
+    height: 100%;
+}
+
+.result__empty__header {
+    font-family: var(--font-raleway);
+    margin-bottom: 0.5rem;
+}
+
+.result__empty__header__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #A2A378;
+}
+
+.result__empty__header__description {
+    font-size: 1rem;
+    line-height: 1.2rem;
+    color: #444;
+}
+
+.result__empty__animation {
+    max-height: 19rem;
+    max-width: 19rem;
+    margin: 0 auto;
+}

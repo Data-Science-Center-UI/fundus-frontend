@@ -1,0 +1,21 @@
+<% if flash.any? %>
+    <% flash.each do |type, msg| %>
+        <div
+            data-controller="notification"
+            data-notification-delay-value="7000"
+            class="notification notification--<%= type %> absolute transition duration-1000 hidden"
+            data-transition-enter-from="notification--enter-from"
+            data-transition-enter-to="notification--enter-to"
+            data-transition-leave-from="notification--leave-from"
+            data-transition-leave-to="notification--leave-to"
+        >
+            <div class="notification__wrapper">
+                <div class="notification__body">
+                    <p class="notification__body__type"><%= type.to_s.upcase %></p>
+                    <p class="notification__body__value"><%= msg.is_a?(Array) ? ((msg.count > 1) ? msg.join(', ') : msg[0]) : msg %></p>
+                </div>
+                <button class="notification__hide" data-action="notification#hide"><i class="bi bi-x-circle"></i></button>
+            </div>
+        </div>
+    <% end %>
+<% end %>

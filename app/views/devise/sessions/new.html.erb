@@ -1,26 +1,24 @@
-<h2>Log in</h2>
+<section class="session wrapper">
+  <%= form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'session-form form' } do |f| %>
+    <div class="form__input-group">
+      <%= f.label :username_or_email, class: 'form__input__label required' %>
+      <%= f.text_field :login, class: 'form__input__field', placeholder: 'e.g: GhaniyKie or ghaniy@dsc.ui.ac.id', autofocus: true, required: true %>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :username_or_email %><br />
-    <%= f.text_field :login, autofocus: true %>
-  </div>
+    <div class="form__input-group">
+      <%= f.label :password, class: 'form__input__label required' %>
+      <%= f.password_field :password, class: 'form__input__field', placeholder: 'Type your password', autocomplete: "current-password", required: true %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    <% if devise_mapping.rememberable? %>
+      <div class="form__input__field-group">
+        <%= f.check_box :remember_me, class: 'form__input__selector' %>
+        <%= f.label :remember_me, class: 'form__input__label' %>
+      </div>
+    <% end %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="form__input-group">
+      <%= f.submit "Login", class: 'form__button-submit' %>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</section>

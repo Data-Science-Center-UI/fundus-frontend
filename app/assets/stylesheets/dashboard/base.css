@@ -1,4 +1,4 @@
-.container {
+.dashboard.container {
     display: flex;
     gap: 0.7rem;
     height: 100vh;
@@ -6,7 +6,7 @@
     background-color: #E5F9DB;
 }
 
-.wrapper {
+.dashboard.wrapper {
     height: 100%;
     max-height: 100vh;
     overflow: auto;
@@ -16,7 +16,7 @@
     gap: 0.7rem;
 }
 
-.contents-container {
+.dashboard.contents-container {
     height: 100%;
     display: flex;
     gap: 0.8rem;

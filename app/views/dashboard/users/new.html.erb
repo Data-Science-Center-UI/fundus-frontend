@@ -1,30 +1,20 @@
-<%= turbo_frame_tag 'user-action' do %>
-    <%= form_with class: 'add-user form' do |f| %>
-        <div class="form__input-group">
-            <%= f.label :fullname, class: 'form__input-group__label required' %>
-            <%= f.text_field :fullname, class: 'form__input-group__field', placeholder: 'e.g: Abdul Hakim Ghaniy', required: true %>
-        </div>
-        <div class="form__input-group">
-            <%= f.label :username, class: 'form__input-group__label required' %>
-            <%= f.text_field :username, class: 'form__input-group__field', placeholder: 'e.g: Abdul Hakim Ghaniy', required: true %>
-        </div>
-        <div class="form__input-group">
-            <%= f.label :email, class: 'form__input-group__label required' %>
-            <%= f.email_field :email, class: 'form__input-group__field', placeholder: 'e.g: Abdul Hakim Ghaniy', required: true %>
-        </div>
-        <div class="form__input-group">
-            <%= f.label :role, class: 'form__input-group__label required' %>
-            <%= f.select :role, options_for_select(ApplicationHelper::ROLE), { prompt: 'Select Role' }, class: 'form__input-group__field', required: true %>
-        </div>
-        <div class="form__input-group">
-            <%= f.label :password, class: 'form__input-group__label required' %>
-            <div class="form__input-group__field-group">
-                <%= f.password_field :password, class: 'form__input-group__field', placeholder: 'Password', required: true %>
-                <%= f.password_field :password_confirmation, class: 'form__input-group__field', placeholder: 'Password Confirmation', required: true%>
-            </div>
-        </div>
-        <div class="form__input-group">
-            <%= f.submit 'Assign User', class: 'form__input-group__button-submit' %>
-        </div>
-    <% end %>
-<% end %>
+<div class="dashboard wrapper">
+    <%# Page Header %>
+    <%=
+        render 'dashboard/components/page_header',
+                title: 'Add New User',
+                description: 'Add User Account of Doctor (Pathologist) or add user as an Admin.'
+    %>
+
+    <%# Page Content %>
+    <section class="dashboard contents-container" data-controller="detections">
+        <%= render 'dashboard/components/content', options: {} do %>
+            <%= turbo_frame_tag 'user-action' do %>
+                <%= render 'dashboard/partials/add_user_form' %>
+            <% end %>
+        <% end %>
+    </section>
+
+    <%# Page Footer %>
+    <%= render 'dashboard/components/page_footer' %>
+</div>

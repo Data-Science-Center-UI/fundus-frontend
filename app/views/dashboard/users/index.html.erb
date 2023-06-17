@@ -1,11 +1,28 @@
-<div class="wrapper">
+<div class="dashboard wrapper">
+    <%# Page Header %>
     <%=
         render 'dashboard/components/page_header',
-                title: 'Users',
+                title: 'User Management',
                 description: 'Manage User Account of Doctor (Pathologist) or add user as an Admin.'
     %>
-    <section class="contents-container" data-controller="detections">
-        <%= render 'dashboard/components/content', options: { header: { title: 'List of Users' } } do %>
+
+    <%# Page Content %>
+    <section class="dashboard contents-container" data-controller="detections">
+        <%= 
+            render 'dashboard/components/content',
+                    options: { 
+                        header: {
+                            title: 'List of Users',
+                            other: lambda do
+                                # Reset Button with Reload Icon
+                                link_to dashboard_users_path, title: 'Reload data' do
+                                    '<i class="bi bi-arrow-repeat" style="font-size: 1.5rem;"></i>'.html_safe
+                                end
+                            end
+                        }
+                    } do 
+            %>
+            <%# Content goes here %>
         <% end %>
 
         <%=
@@ -13,6 +30,7 @@
                     options: {
                         header: {
                             title: 'Action to User',
+                            # Add New User Button beside title
                             other: lambda do
                                 turbo_frame_tag target: 'user-action' do
                                     link_to new_dashboard_user_path, title: 'Add new user' do
@@ -25,15 +43,18 @@
                         id: 'user'
                     } do
             %>
+
             <%= turbo_frame_tag 'user-action' do %>
                 <%=
                     render 'dashboard/components/result_empty',
                             title: 'Nothing happens here',
-                            description: 'Show user detail by click one of User Data from list, or add one by click <i class="bi bi-person-add"></i> Button.',
+                            description: 'Show user detail by click each data from list, or add one by click <i class="bi bi-person-add"></i> button.',
                             lottie_url: 'https://assets10.lottiefiles.com/packages/lf20_mf5j5kua.json'
                 %>
             <% end %>
         <% end %>
-   </section>
+    </section>
+
+    <%# Page Footer %>
     <%= render 'dashboard/components/page_footer' %>
 </div>

@@ -77,9 +77,10 @@ class User
   end
 
   def validate_username
-    return unless User.where(email: username).exists?
+    return unless User.where(username:).exists?
 
-    errors.add(:username, :invalid)
+    errors.add(:username, 'has already been taken')
+    throw(:abort)
   end
 
   def active_for_authentication?

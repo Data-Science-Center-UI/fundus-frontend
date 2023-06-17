@@ -5,6 +5,7 @@ class Patient
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Paperclip
+  include Error::FundusServer
 
   field :fullname, type: String
   field :birth_day, type: Integer
@@ -37,14 +38,10 @@ class Patient
       headers: { content_type: 'application/json' }
     )
 
-    if request.status != 200
-      errors.add(:detection_record, 'failed to create. Image is invalid, please try again.')
-      delete and return
-    end
+    delete and raise ImageInvalid if request.status != 200
 
     create_detection_record(**JSON.parse(request.body).to_snake_keys!, pathologist:) && reload
-  rescue Faraday::ConnectionFailed, Faraday::TimeoutError => e
-    errors.add(:detection_record, "failed to create. ERROR: #{e.class} - #{e.message}")
-    delete and return
+  rescue Faraday::ConnectionFailed, Faraday::TimeoutError
+    delete and raise ConnectionFailed
   end
 end

@@ -12,4 +12,11 @@ module ApplicationHelper
   def birthdate(day, month, year)
     "#{Date::MONTHNAMES[month]} #{day}, #{year}"
   end
+
+  def detection_result_empty_template
+    { partial: 'dashboard/components/result_empty',
+      locals: { title: 'Nothing happens here',
+                description: 'Upload Fundus Image and Submit to get Detection Result.',
+                lottie_url: 'https://assets4.lottiefiles.com/packages/lf20_iikbn1ww.json' } }
+  end
 end

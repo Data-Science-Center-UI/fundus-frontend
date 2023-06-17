@@ -3,7 +3,11 @@ import { Controller } from "@hotwired/stimulus";
     export default class extends Controller {
         connect() {
             document.addEventListener('turbo:submit-start', (e) => {
-                document.getElementById('detection-result').replaceChildren(this.loaderAnimation())
+                const form = e.detail.formSubmission.formElement
+
+                if (form.matches('.detection-form')) {
+                    document.getElementById('detection-result').replaceChildren(this.loaderAnimation())
+                }
             });
         }
 

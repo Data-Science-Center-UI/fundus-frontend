@@ -25,7 +25,5 @@ export default class extends Controller {
 
         el.classList.add(`result-table__row${thresholdRange}`);
     });
-
-    console.log(getThresholdRange(91))
   }
 }

@@ -1,0 +1,43 @@
+.error.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: #E5F9DB;
+}
+
+.error.wrapper {
+    margin: auto;
+    width: 100%;
+    max-width: 40rem;
+    padding: 2.5rem;
+}
+
+.error.content-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+}
+
+.error-code {
+    font-size: 5rem;
+}
+
+.error-description {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+}
+
+.error-description__title {
+    font-family: var(--font-raleway);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.error-description__body {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.3rem;
+}

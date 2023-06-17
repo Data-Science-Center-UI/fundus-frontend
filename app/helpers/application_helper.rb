@@ -19,4 +19,29 @@ module ApplicationHelper
                 description: 'Upload Fundus Image and Submit to get Detection Result.',
                 lottie_url: 'https://assets4.lottiefiles.com/packages/lf20_iikbn1ww.json' } }
   end
+
+  def supported_error_codes(code, fallback = 500)
+    {
+      401 => {
+        code: '401',
+        status: 'Unauthorized',
+        message: 'You are not authorized to access this page. Please Login.'
+      },
+      403 => {
+        code: '403',
+        status: 'Forbidden',
+        message: 'Your role is not authorized to access this page. Please contact your administrator.'
+      },
+      404 => {
+        code: '404',
+        status: 'Not Found',
+        message: 'The page you are looking for does not exist. Either link is missing, or the page has been removed.'
+      },
+      500 => {
+        code: '500',
+        status: 'Internal Server Error',
+        message: 'Something went wrong. Please try again later.'
+      }
+    }.fetch(code, fallback)
+  end
 end

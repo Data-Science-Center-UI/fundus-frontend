@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Dashboard
-  class DetectionReportsController < DashboardController
+  class DetectionResultsController < DashboardController
     before_action :authorize_doctor!
 
     def index

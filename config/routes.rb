@@ -3,7 +3,10 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # devise_for :users, skip: [:registrations]
-  devise_for :users, skip: [:registrations], path: 'accounts', path_names: { sign_in: 'login', sign_out: 'logout' }
+  devise_for :users, skip: [:registrations],
+                     path: 'accounts',
+                     path_names: { sign_in: 'login', sign_out: 'logout' },
+                     controllers: { sessions: 'users/sessions' }
 
   root to: 'dashboard/dashboard#index'
 
@@ -11,6 +14,6 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
     resources :users
     resources :detections, only: %i[index create]
-    resources :detection_reports, only: [:index]
+    resources :detection_results, only: [:index]
   end
 end

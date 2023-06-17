@@ -15,9 +15,9 @@
                 <i class="bi bi-clipboard2-pulse"></i>
                 <%= render 'dashboard/components/tooltip', label: 'Fundus Detection' %>
             <% end %>
-            <%= link_to dashboard_detection_reports_path, class: 'sidebar__button-menu', data: { 'components--sidebar-target': 'menuIcon', controller: 'popover', action: 'mouseenter->popover#show mouseleave->popover#hide' } do %>
+            <%= link_to dashboard_detection_results_path, class: 'sidebar__button-menu', data: { 'components--sidebar-target': 'menuIcon', controller: 'popover', action: 'mouseenter->popover#show mouseleave->popover#hide' } do %>
                 <i class="bi bi-journal-medical"></i>
-                <%= render 'dashboard/components/tooltip', label: 'Fundus Detection Reports' %>
+                <%= render 'dashboard/components/tooltip', label: 'Fundus Detection Results' %>
             <% end %>
         <% end %>
     </div>

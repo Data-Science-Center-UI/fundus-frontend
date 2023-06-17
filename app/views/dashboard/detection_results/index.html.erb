@@ -1,0 +1,13 @@
+<div class="dashboard wrapper">
+    <%=
+        render 'dashboard/components/page_header',
+                title: 'List of Detection Results',
+                description: 'Fundus detection results recorded here.'
+    %>
+    <section class="dashboard contents-container">
+        <%= render 'dashboard/components/content', options: { header: { title: 'Detection Result' }, id: 'detection-result' } do %>
+            <%= render detection_result_empty_template %>
+        <% end %>
+    </section>
+    <%= render 'dashboard/components/page_footer' %>
+</div>

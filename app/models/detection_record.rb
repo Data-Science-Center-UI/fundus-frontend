@@ -5,6 +5,8 @@ class DetectionRecord
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  field :patient_record, type: String
+  field :patient_name, type: String
   field :pathologist, type: String
   field :diabethic_retinopathy, type: Array
   field :laser_scars, type: Array
@@ -14,4 +16,6 @@ class DetectionRecord
 
   # Relations
   belongs_to :patient
+
+  index({ patient_record: 'text', patient_name: 'text' })
 end

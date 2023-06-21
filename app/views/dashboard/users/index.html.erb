@@ -13,16 +13,28 @@
                     options: { 
                         header: {
                             title: 'List of Users',
-                            other: lambda do
-                                # Reset Button with Reload Icon
-                                link_to dashboard_users_path, title: 'Reload data' do
-                                    '<i class="bi bi-arrow-repeat" style="font-size: 1.5rem;"></i>'.html_safe
+                            other: -> {
+                                content_tag(:div, nil, class: 'content__header__menu') do
+                                    search = -> {
+                                        form_with url: dashboard_users_lists_path, class: 'search-bar', method: :get, data: { controller: 'form-submission', turbo_frame: "users", turbo_stream: true, turbo_action: :advance } do |f|
+                                            f.text_field :query, class: 'search-bar__input', placeholder: 'Search by name or username', data: { action: 'input->form-submission#search' }
+                                        end
+                                    }
+
+                                    # Reset Button with Reload Icon
+                                    reload = -> {
+                                        link_to dashboard_users_path, title: 'Reload data' do
+                                            content_tag(:i, nil, class: 'bi bi-arrow-repeat', style: 'font-size: 1.5rem;')
+                                        end
+                                    }
+
+                                    search&.call + reload&.call
                                 end
-                            end
+                            }
                         }
                     } do 
             %>
-            <%# Content goes here %>
+            <%= render 'dashboard/partials/users/lists', users: @users %>
         <% end %>
 
         <%=
@@ -32,9 +44,9 @@
                             title: 'Action to User',
                             # Add New User Button beside title
                             other: lambda do
-                                turbo_frame_tag target: 'user-action' do
-                                    link_to new_dashboard_user_path, title: 'Add new user' do
-                                        '<i class="bi bi-person-add" style="font-size: 1.5rem;"></i>'.html_safe
+                                content_tag(:div, nil, class: 'content__header__menu') do
+                                    link_to new_dashboard_user_path, title: 'Add new user', data: { turbo_frame: "user-action" } do
+                                        content_tag(:i, nil, class: 'bi bi-person-add', style: 'font-size: 1.5rem;')
                                     end
                                 end
                             end
@@ -45,12 +57,7 @@
             %>
 
             <%= turbo_frame_tag 'user-action' do %>
-                <%=
-                    render 'dashboard/components/result_empty',
-                            title: 'Nothing happens here',
-                            description: 'Show user detail by click each data from list, or add one by click <i class="bi bi-person-add"></i> button.',
-                            lottie_url: 'https://assets10.lottiefiles.com/packages/lf20_mf5j5kua.json'
-                %>
+                <%= render user_action_empty_template %>
             <% end %>
         <% end %>
     </section>

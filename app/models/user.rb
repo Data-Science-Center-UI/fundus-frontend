@@ -5,6 +5,8 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
   include Discard::Model
+  include Validations::User
+  include Helpers::User
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable
@@ -46,44 +48,5 @@ class User
   field :role, type: String
   field :discarded_at, type: DateTime
 
-  # only allow letter, number, underscore and punctuation.
-  validates_presence_of :fullname, :role
-  validates_format_of :username, with: /^[a-zA-Z0-9_.]*$/, multiline: true
-  validates :role, inclusion: { in: %w[Admin Doctor], message: '%<value>s is not a valid role' }
-  validates_confirmation_of :password, if: -> { password.present? }
-  validate :validate_username
-
-  attr_writer :login
-
-  def self.find_first_by_auth_conditions(warden_conditions)
-    conditions = warden_conditions.dup
-    if (login = conditions.delete(:login))
-      any_of({ username: /^#{Regexp.escape(login)}$/i }, { email: /^#{Regexp.escape(login)}$/i }).first
-    else
-      super
-    end
-  end
-
-  def admin?
-    role == 'Admin'
-  end
-
-  def doctor?
-    role == 'Doctor'
-  end
-
-  def login
-    @login || username || email
-  end
-
-  def validate_username
-    return unless User.where(username:).exists?
-
-    errors.add(:username, 'has already been taken')
-    throw(:abort)
-  end
-
-  def active_for_authentication?
-    super && !discarded_at
-  end
+  index({ fullname: 'text', username: 'text' })
 end

@@ -10,6 +10,9 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag "hotwire-livereload", defer: true if Rails.env.development? %>
+
+    <%# Prevent Robot being index %>
+    <meta name="robots" content="noindex, nofollow">
   </head>
 
   <body>

@@ -1,4 +1,8 @@
-<%= form_with url: dashboard_detections_path, class: 'detection-form form', data: { controller: 'partials--detection-form' } do |f| %>
+<%= form_for :patient, url: dashboard_detections_path, html: { class: 'detection-form form', data: { controller: 'partials--detection-form' } } do |f| %>
+    <div class="form__input-group" data-controller="components--form">
+        <%= f.label :patient_record, class: 'form__input__label' %>
+        <%= f.text_field :patient_record, class: 'form__input__field', placeholder: 'Fill if any. Else, will generated automatically', data: { action: 'components--form#autoUpcase'} %>
+    </div>
     <div class="form__input-group">
         <%= f.label :fullname, class: 'form__input__label required' %>
         <%= f.text_field :fullname, class: 'form__input__field', placeholder: 'e.g: Abdul Hakim Ghaniy', required: true %>
@@ -31,6 +35,6 @@
         <% end %>
     </div>
     <div class="form__input-group">
-        <%= f.submit 'Get Result', class: 'form__button-submit' %>
+        <%= f.submit 'Get Result', class: 'form__button-submit button--primary' %>
     </div>
 <% end %>

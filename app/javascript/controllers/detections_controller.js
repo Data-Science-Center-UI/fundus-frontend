@@ -11,6 +11,8 @@ import { Controller } from "@hotwired/stimulus";
             });
         }
 
+        // Try to replace this animation in something like Rails Turbo Frames
+        // With functionality with Turbo Stream when Form Submitted.
         loaderAnimation() {
             const loader = `
             <div class="result__empty">

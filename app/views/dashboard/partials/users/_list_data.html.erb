@@ -1,0 +1,13 @@
+<tr 
+    class="table__row"
+    id="<%= user.id %>"
+    data-action="click->components--table#openDestinationFrame"
+    data-destination="<%= dashboard_user_path user.id %>"
+    data-destination-frame="user-action"
+>
+    <td><%= user.fullname %></td>
+    <td><%= user.username %></td>
+    <td><%= user.email %></td>
+    <td><%= user.role %></td>
+    <td><%= ApplicationHelper::USER_STATUS.fetch(user.active?) %></td>
+</tr>

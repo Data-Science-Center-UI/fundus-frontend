@@ -23,7 +23,7 @@ export default class extends Controller {
         const probability = Math.floor(el.dataset.probability);
         const thresholdRange = probability ? getThresholdRange(probability) : "";
 
-        el.classList.add(`result-table__row${thresholdRange}`);
+        el.classList.add(`table__row${thresholdRange}`);
     });
   }
 }

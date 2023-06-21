@@ -1,0 +1,13 @@
+<tr 
+    class="table__row"
+    id="<%= result.id %>"
+    data-action="click->components--table#openDestinationFrame"
+    data-destination="<%= dashboard_detection_result_path result.id %>"
+    data-destination-frame="show-result"
+>
+    <td><%= result.id.to_s.last(8) %></td>
+    <td><%= result.patient_record %></td>
+    <td><%= result.patient_name %></td>
+    <td><%= result.pathologist %></td>
+    <td><%= formated_date(result.created_at.day, result.created_at.month, result.created_at.year) %></td>
+</tr>

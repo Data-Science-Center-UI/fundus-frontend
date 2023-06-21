@@ -1,0 +1,19 @@
+<div class="detection-result">
+    <% ApplicationHelper::PATIENT_ATTRIBUTES.each do |data| %>
+        <div class="detection-result__group">
+            <p class="detection-result__data"><%= data.to_s.titleize %></p>
+            <p class="detection-result__value">
+                <%= data.eql?(:birthdate) ? formated_date(patient.birthdate.day, patient.birthdate.month, patient.birthdate.year) : patient[data] %>
+            </p>
+        </div>
+    <% end %>
+    <div class="detection-result__group">
+        <div class="detection-result__table__title">
+            <p>FUNDUS DIAGNOSTIC RESULT</p>
+            <hr />
+        </div>
+        <div class="detection-result__table table__container">
+            <%= render 'dashboard/partials/detection_results/result_table', result: %>
+        </div>
+    </div>
+</div>

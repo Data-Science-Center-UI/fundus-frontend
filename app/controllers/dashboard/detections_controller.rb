@@ -10,23 +10,20 @@ module Dashboard
       patient = Patient.new(**patient_params, pathologist: current_user.fullname)
       patient.save!
 
-      respond_to do |format|
-        format.turbo_stream do
-          flash.now[:notice] = 'Patient created successfully'
-
-          render turbo_stream: [
-            turbo_stream.prepend('notification', partial: 'dashboard/components/notification'),
-            turbo_stream.update(
-              'detection-result', partial: 'dashboard/partials/detection_result',
-                                  locals: { patient: }
-            )
-          ]
-        end
+      respond_turbo_stream notification: { notice: 'Patient created successfully' } do
+        turbo_stream.update(
+          'detection-result', partial: 'dashboard/partials/detection_results/result',
+                              locals: { result: patient.detection_record, patient: }
+        )
       end
     rescue Error::FundusServer::ConnectionFailed, Error::FundusServer::ImageInvalid => e
-      respond_to_error e.message
+      respond_turbo_stream notification: { alert: e.message } do
+        turbo_stream.update('detection-result', **detection_result_empty_template)
+      end
     rescue Mongoid::Errors::Validations
-      respond_to_error patient.errors.full_messages
+      respond_turbo_stream notification: { alert: patient.errors.full_messages } do
+        turbo_stream.update('detection-result', **detection_result_empty_template)
+      end
     end
 
     private
@@ -36,7 +33,8 @@ module Dashboard
     end
 
     def permitted_params
-      params.permit(
+      params.require(:patient).permit(
+        :patient_record,
         :fullname,
         :birth_day,
         :birth_month,
@@ -47,19 +45,6 @@ module Dashboard
         :authenticity_token,
         :commit
       )
-    end
-
-    def respond_to_error(message)
-      respond_to do |format|
-        format.turbo_stream do
-          flash.now[:alert] = message
-
-          render turbo_stream: [
-            turbo_stream.prepend('notification', partial: 'dashboard/components/notification'),
-            turbo_stream.update('detection-result', **detection_result_empty_template)
-          ]
-        end
-      end
     end
   end
 end

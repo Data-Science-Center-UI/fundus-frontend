@@ -1,0 +1,18 @@
+<%= turbo_frame_tag 'detection-results' do %>
+    <div class="table__container">
+        <table class="table" data-controller="partials--result-table">
+            <thead class="table__header">
+                <tr>
+                    <th>Record ID</th>
+                    <th>Patient Record</th>
+                    <th>Patient Name</th>
+                    <th>Pathologist</th>
+                    <th>Recorded At</th>
+                </tr>
+            </thead>
+            <tbody class="table__body zebra-row" id="detection-result-data" data-controller="components--table">
+                <%= render partial: 'dashboard/partials/detection_results/list_data', collection: results, as: :result, cached: true %>
+            </tbody>
+        </table>
+    </div>
+<% end %>

@@ -1,0 +1,45 @@
+<%= form_for :user, html: { class: 'user-form form' }, url:, method: do |f| %>
+    <div class="form__input-group">
+        <%= f.label :fullname, class: 'form__input__label required' %>
+        <%= f.text_field :fullname, class: 'form__input__field', placeholder: 'e.g: Abdul Hakim Ghaniy', required: false %>
+    </div>
+    <div class="form__input-group">
+        <%= f.label :username, class: 'form__input__label required' %>
+        <%= f.text_field :username, class: 'form__input__field', placeholder: 'e.g: GhaniyKie', required: false %>
+    </div>
+    <div class="form__input-group">
+        <%= f.label :email, class: 'form__input__label required' %>
+        <%= f.email_field :email, class: 'form__input__field', placeholder: 'e.g: ghaniy@dsc.ui.ac.id', required: false %>
+    </div>
+    <div class="form__input-group">
+        <%= f.label :role, class: 'form__input__label required' %>
+        <%= f.select :role, options_for_select(ApplicationHelper::ROLE), { prompt: 'Select Role' }, class: 'form__input__field', required: false %>
+    </div>
+    <div class="form__input-group">
+        <%= f.label :password, class: 'form__input__label required' %>
+        <div class="form__input__field-group">
+            <%= f.password_field :password, class: 'form__input__field', placeholder: 'Password', required: false %>
+            <%= f.password_field :password_confirmation, class: 'form__input__field', placeholder: 'Password Confirmation', required: false %>
+        </div>
+    </div>
+
+    <%# Button Actions %>
+    <div class="form__input-group">
+        <% if ['new', 'create'].include?(action_name) %>
+            <%= f.submit 'Assign User', class: 'form__button-submit button--primary' %>
+        <% end %>
+        <% if action_name.eql?('show') && @user.active? %>
+            <%= f.button 'Update User', class: 'form__button-submit button--primary', type: :submit %>
+            <%= 
+                button_to 'Deactivate User', dashboard_user_path, class: 'form__button-submit button--danger',
+                                                                  formmethod: :delete,
+                                                                  action: :destroy,
+                                                                  data: { turbo_confirm: "Are you sure? This action can't be undone!" },
+                                                                  disabled: @user.id.eql?(current_user.id)
+            %>
+        <% end %>
+    </div>
+<% end %>
+<% if action_name.eql?('show') && @user.inactive? %>
+    <%= button_to 'Activate User', dashboard_user_activate_path, class: 'form__button-submit button--danger', formmethod: :patch, action: :update, data: { turbo_confirm: "Are you sure wanna activate this user?" } %>
+<% end %>

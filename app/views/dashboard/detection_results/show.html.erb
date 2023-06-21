@@ -2,15 +2,15 @@
     <%# Page Header %>
     <%=
         render 'dashboard/components/page_header',
-                title: 'Add New User',
-                description: 'Add User Account of Doctor (Pathologist) or add user as an Admin.'
+                title: 'Show Detection Result',
+                description: 'Show and Export Fundus Detection Result.'
     %>
 
     <%# Page Content %>
     <section class="dashboard contents-container" data-controller="detections">
         <%= render 'dashboard/components/content', options: {} do %>
-            <%= turbo_frame_tag 'user-action' do %>
-                <%= render 'dashboard/partials/users/form', url: dashboard_users_path, method: :post %>
+            <%= turbo_frame_tag 'show-result' do %>
+                <%= render 'dashboard/partials/detection_results/result', patient: @patient, result: @patient.detection_record %>
             <% end %>
         <% end %>
     </section>

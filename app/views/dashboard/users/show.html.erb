@@ -2,15 +2,15 @@
     <%# Page Header %>
     <%=
         render 'dashboard/components/page_header',
-                title: 'Add New User',
-                description: 'Add User Account of Doctor (Pathologist) or add user as an Admin.'
+                title: 'Show Current User',
+                description: 'Show, Edit, or Delete Current User.'
     %>
 
     <%# Page Content %>
     <section class="dashboard contents-container" data-controller="detections">
         <%= render 'dashboard/components/content', options: {} do %>
             <%= turbo_frame_tag 'user-action' do %>
-                <%= render 'dashboard/partials/users/form', url: dashboard_users_path, method: :post %>
+                <%= render 'dashboard/partials/users/form', url: dashboard_user_path, method: :patch %>
             <% end %>
         <% end %>
     </section>

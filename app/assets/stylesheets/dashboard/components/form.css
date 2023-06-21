@@ -40,25 +40,15 @@
     gap: 0.5rem;
 }
 
-.form__button-submit {
-    margin-top: 1.2rem;
-    padding: 0.8rem 1.1rem;
-    border-radius: 1rem;
-    border: none;
-    outline: none;
+.form__button-submit,
+.form__button-delete {
     font-family: var(--font-sans);
     font-size: 1rem;
     font-weight: bold;
-    background: #83764F;
-    color: #fff;
-    cursor: pointer;
-    transition: background .2s ease-in-out;
-}
-
-.form__button-submit:hover {
-    background: #A2A378;
-}
-
-.form__button-submit:focus {
-    background: #A2A378;
+    border-radius: 1rem;
+    border: none;
+    outline: none;
+    margin-top: 1.2rem;
+    padding: 0.8rem 1.1rem;
+    width: 100%;
 }

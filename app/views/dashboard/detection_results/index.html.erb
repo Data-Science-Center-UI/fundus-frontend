@@ -5,8 +5,38 @@
                 description: 'Fundus detection results recorded here.'
     %>
     <section class="dashboard contents-container">
-        <%= render 'dashboard/components/content', options: { header: { title: 'Detection Result' }, id: 'detection-result' } do %>
-            <%= render detection_result_empty_template %>
+        <%=
+            render 'dashboard/components/content',  
+                options: {
+                    header: {
+                        title: 'Detection Results',
+                        other: -> {
+                                content_tag(:div, nil, class: 'content__header__menu') do
+                                    search = -> {
+                                        form_with url: dashboard_detection_results_path, class: 'search-bar', method: :get, data: { turbo_frame: "detection-results", controller: 'form-submission' } do |f|
+                                            f.text_field :search, class: 'search-bar__input', placeholder: 'Search Patient Record or Name', data: { action: 'input->form-submission#search' }
+                                        end
+                                    }
+
+                                    # Reset Button with Reload Icon
+                                    reload = -> {
+                                        link_to dashboard_detection_results_path, title: 'Reload data' do
+                                            content_tag(:i, nil, class: 'bi bi-arrow-repeat', style: 'font-size: 1.5rem;')
+                                        end
+                                    }
+
+                                    search&.call + reload&.call
+                                end
+                            }
+                        }
+                    } do
+            %>
+            <%= @detection_results.blank? ? render(detection_result_empty_template) : render('dashboard/partials/detection_results/lists', results: @detection_results) %>
+        <% end %>
+        <%= render 'dashboard/components/content', options: { header: { title: 'Show Result' }, class: 'max-w-35' } do %>
+            <%= turbo_frame_tag 'show-result' do %>
+                <%= render show_result_empty_template %>
+            <% end %>
         <% end %>
     </section>
     <%= render 'dashboard/components/page_footer' %>

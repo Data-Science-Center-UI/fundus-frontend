@@ -14,9 +14,10 @@
                         header: {
                             title: 'Patient Data',
                             other: lambda do
-                                # Reset Button with Reload Icon
-                                link_to dashboard_detections_path, title: 'Reload data' do
-                                    '<i class="bi bi-arrow-repeat" style="font-size: 1.5rem;"></i>'.html_safe
+                                content_tag(:div, nil, class: 'content__header__menu') do
+                                    link_to dashboard_detections_path, title: 'Reload data' do
+                                        content_tag(:i, nil, class: 'bi bi-arrow-repeat', style: 'font-size: 1.5rem;')
+                                    end
                                 end
                             end
                         }
@@ -24,7 +25,7 @@
             %>
 
             <%= turbo_frame_tag 'detection-form' do %>
-                <%= render 'dashboard/partials/detection_form' %>
+                <%= render 'dashboard/partials/detections/form' %>
             <% end %>
         <% end %>
 

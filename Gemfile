@@ -85,3 +85,6 @@ gem 'cancancan-mongoid', '~> 2.0'
 
 # Soft Destroy Data
 gem 'discard'
+
+# Rails Pagination
+gem 'kaminari-mongoid'

@@ -16,8 +16,46 @@
     max-width: 30rem;
 }
 
+.max-w-35 {
+    max-width: 40rem;
+}
+
 /* Additional Class */
 .required:after {
     content:" *";
     color: red;
+}
+
+.button--primary {
+    background: #83764F;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+.button--primary:hover,
+.button--primary:focus {
+    background: #A2A378;
+}
+
+.button--danger {
+    background: #fff;
+    color: #D9534F;
+    border: 1px solid #D9534F;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+.button--danger:hover,
+.button--danger:focus {
+    background: #D9534F;
+    color: #fff;
+}
+
+.button--primary:disabled,
+.button--danger:disabled {
+    background: #b5b5a8;
+    color: #fff;
+    border: 0;
+    cursor: not-allowed;
 }

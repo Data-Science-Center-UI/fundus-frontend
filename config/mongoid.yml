@@ -187,12 +187,12 @@ test:
 production:
   clients:
     default:
-      database: <%= ENV.fetch("DSCUI_MONGODB_NAME", "fundus_frontend") %>
+      database: <%= Rails.application.credentials.dscui.db.name %>
       hosts:
-        - localhost:27017
+        - <%= Rails.application.credentials.dscui.db.host %>
       options:
-        user: <%= ENV.fetch("DSCUI_MONGODB_USER", "") %>
-        password: <%= ENV.fetch("DSCUI_MONGODB_PASSWORD", "") %>
+        user: <%= Rails.application.credentials.dscui.db.user %>
+        password: <%= Rails.application.credentials.dscui.db.password %>
         auth_source: admin
         read:
           mode: :primary

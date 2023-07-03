@@ -22,8 +22,10 @@ module Callable
       end
 
       def create_record
+        fundus_host = Rails.application.credentials.dscui.fundus
+
         request = LontaraUtilities::HTTPClient.post(
-          url: 'http://localhost:5000/detection',
+          url: Rails.env.production? ? fundus_host.prod : fundus_host.dev,
           body: { path: fundus_image.path },
           headers: { content_type: 'application/json' }
         )

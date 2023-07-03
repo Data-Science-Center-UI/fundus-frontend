@@ -4,7 +4,7 @@
 lock '~> 3.17.3'
 
 set :application, 'fundus_frontend'
-set :repo_url, 'git@github.com:Data-Science-Center-UI/fundus-frontend.git'
+set :repo_url, 'git@github.com-fundus-frontend:Data-Science-Center-UI/fundus-frontend.git'
 
 # Default branch is :master
 ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

@@ -30,11 +30,12 @@ install_plugin Capistrano::SCM::Git
 #
 # require "capistrano/rvm"
 # require "capistrano/chruby"
-require 'capistrano/rbenv'
-require 'capistrano/bundler'
-require 'capistrano/rails/assets'
-require 'capistrano/rails/migrations'
+# require 'capistrano/bundler'
+# require 'capistrano/rails/assets'
+# require 'capistrano/rails/migrations'
+require 'capistrano/rails'
 require 'capistrano/passenger'
+require 'capistrano/rbenv'
 
 set :rbenv_type, :user
 set :rbenv_ruby, '3.1.3'

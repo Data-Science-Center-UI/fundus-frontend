@@ -67,6 +67,8 @@ group :development do
   gem 'capistrano-rbenv'
 end
 
+gem 'mini_racer'
+
 # Rails Compressing
 gem 'htmlcompressor', '~> 0.4.0'
 gem 'rack-brotli', '~> 1.2'

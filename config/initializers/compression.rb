@@ -22,7 +22,7 @@ Rails.application.configure do
 
   config.middleware.use Rack::Deflater
   config.middleware.use Rack::Brotli
-  config.middleware.insert_before ActionDispatch::Static, Rack::Deflater
+  # config.middleware.insert_before ActionDispatch::Static, Rack::Deflater
 
   config.middleware.use HtmlCompressor::Rack,
                         # compress_html: true,

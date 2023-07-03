@@ -197,6 +197,7 @@ production:
         read:
           mode: :primary
         max_pool_size: 1
+        auth_mech: :scram
   options:
     use_activesupport_time_zone: true
     use_utc: false

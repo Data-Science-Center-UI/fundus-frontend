@@ -8,7 +8,6 @@ namespace :config_files do
 
       upload! StringIO.new(File.read('config/mongoid.yml')), "#{shared_path}/config/mongoid.yml"
       upload! StringIO.new(File.read('config/master.key')), "#{shared_path}/config/master.key"
-      # upload! StringIO.new(File.read('config/application.yml')), "#{shared_path}/config/application.yml"
     end
   end
 end

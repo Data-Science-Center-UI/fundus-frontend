@@ -6,16 +6,7 @@ module Dashboard
 
     before_action :authorize_admin!
 
-    def index
-      respond_to do |format|
-        # this will be the response to the search form request
-        format.turbo_stream do
-          # render turbo_stream: turbo_stream.replace(:infinite_scroll, partial: "infinite_scroll")
-        end
-        # this is regular navigation response
-        format.html
-      end
-    end
+    def index; end
 
     def show
       @user = User.find(params[:id])

@@ -176,7 +176,7 @@ development:
 test:
   clients:
     default:
-      database: fundus_frontend_test
+      database: fundus_frontend
       hosts:
         - localhost:27017
       options:
@@ -187,9 +187,9 @@ test:
 production:
   clients:
     default:
-      database: <%= ENV.fetch("DSCUI_MONGODB_NAME", "fundus_frontend_production") %>
+      database: <%= ENV.fetch("DSCUI_MONGODB_NAME", "fundus_frontend") %>
       hosts:
-        - <%= ENV.fetch("DSCUI_MONGODB_HOST", "mongoserver:27017") %>
+        - localhost:27017
       options:
         user: <%= ENV.fetch("DSCUI_MONGODB_USER", "") %>
         password: <%= ENV.fetch("DSCUI_MONGODB_PASSWORD", "") %>

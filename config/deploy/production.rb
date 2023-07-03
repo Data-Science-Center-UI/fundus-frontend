@@ -56,7 +56,9 @@
 #     # password: "please use keys"
 #   }
 
-server ENV['DSCUI_SERVER_HOST'], user: ENV['DSCUI_SERVER_USER'], roles: %w[app db web]
+server ENV['DSCUI_SERVER_HOST'], roles: %w[app db web], ssh_options: {
+  user: ENV['DSCUI_SERVER_USER'], password: ENV['DSCUI_SERVER_PASSWORD'], forward_agent: false
+}
 set :deploy_to, '/home/dsc/fundus/fundus-frontend'
 set :branch, 'main'
 set :stage, :production

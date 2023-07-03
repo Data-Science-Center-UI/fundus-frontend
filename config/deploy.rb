@@ -44,4 +44,4 @@ set :keep_releases, 3
 before 'deploy:starting', 'config_files:upload'
 
 # reload application after successful deploy
-after 'deploy:publishing', 'application:reload'
+# after 'deploy:publishing', 'application:reload'

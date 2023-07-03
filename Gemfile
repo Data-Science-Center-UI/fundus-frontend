@@ -62,6 +62,7 @@ group :development do
 
   # Add Deployment Tasks
   gem 'capistrano'
+  gem 'capistrano-passenger'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
 end

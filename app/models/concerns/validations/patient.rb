@@ -7,7 +7,7 @@ module Validations
     include Mongoid::Paperclip
 
     included do
-      has_mongoid_attached_file :fundus_image, path: "#{Dir.home}/images/:filename"
+      has_mongoid_attached_file :fundus_image, path: "#{Dir.home}/images/#{SecureRandom.hex}.:extension"
 
       validates :gender, inclusion: { in: %w[Male Female], message: '%<value>s is not a valid gender' }
       validates_presence_of :fullname, :age, :fundus_image

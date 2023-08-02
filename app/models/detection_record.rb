@@ -4,15 +4,11 @@
 class DetectionRecord
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Attributes::Dynamic
 
   field :patient_record, type: String
   field :patient_name, type: String
   field :pathologist, type: String
-  field :diabethic_retinopathy, type: Array
-  field :laser_scars, type: Array
-  field :media_haze, type: Array
-  field :brvo, type: Array
-  field :crvo, type: Array
 
   # Relations
   belongs_to :patient

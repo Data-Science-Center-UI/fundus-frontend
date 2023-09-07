@@ -7,7 +7,7 @@
         </tr>
     </thead>
     <tbody class="table__body" data-controller="partials--result-table">
-        <% ApplicationHelper::DIAGNOSIS.each do |diagnosis| %>
+        <% result.detection.each do |data, value| %>
             <%#
                 Get Probability data which is located at Index 1
                 Probability used for colorize rows
@@ -16,10 +16,10 @@
             <tr
                 class="table__row"
                 data-partials--result-table-target="resultTableRow"
-                data-probability=<%= result[diagnosis][1].present? ? result[diagnosis][1].to_f : '' %>
+                data-probability=<%= value[1].present? ? value[1].to_f : '' %>
             >
-                <td><%= diagnosis.to_s.humanize.upcase %></td>
-                <% result[diagnosis].each do |data| %><td><%= data %></td><% end %>
+                <td><%= data.humanize.upcase %></td>
+                <% value.each do |val| %><td><%= val %></td><% end %>
             </tr>
         <% end %>
     </tbody>

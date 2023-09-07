@@ -17,6 +17,8 @@ module Dashboard
         )
       end
     rescue Error::FundusServer::ConnectionFailed, Error::FundusServer::ImageInvalid => e
+      patient.destroy
+
       respond_turbo_stream notification: { alert: e.message } do
         turbo_stream.update('detection-result', **detection_result_empty_template)
       end

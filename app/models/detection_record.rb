@@ -4,11 +4,11 @@
 class DetectionRecord
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Attributes::Dynamic
 
   field :patient_record, type: String
   field :patient_name, type: String
   field :pathologist, type: String
+  field :detection, type: Hash
 
   # Relations
   belongs_to :patient

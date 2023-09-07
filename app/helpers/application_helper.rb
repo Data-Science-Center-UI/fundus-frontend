@@ -5,7 +5,6 @@ module ApplicationHelper
   GENDER = [%w[Male Male], %w[Female Female]].freeze
   MONTHNAMES = Date::MONTHNAMES.compact.map.with_index { |month, index| [month, index + 1] }
   PATIENT_ATTRIBUTES = %i[patient_record fullname birthdate age gender].freeze
-  DIAGNOSIS = %i[media_haze laser_scars diabethic_retinopathy brvo crvo armd cardiovascular glaukoma hipertensi katarak komplikasi_ginjal retinopathy_of_prematury].freeze
 
   # User Attributes
   USER_ATTRIBUTES = %i[fullname username email role status].freeze

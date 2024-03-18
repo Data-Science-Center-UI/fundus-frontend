@@ -105,7 +105,7 @@ To start rails apps, runs `rails s`. Open your browser and go to `http://localho
 
 If this is your first init, you must have First Initial User (aka: User Admin) on your db. Open new terminal window, change your dir to `fundus-frontend`, runs `rails console`, then create this user by following code:
 ```ruby
-User.create! email: "your@email.com", password: "Y0uRP4$$word", username: "admin", role: "Admin"
+User.create! email: "your@email.com", password: "Y0uRP4$$word", username: "admin", role: "Admin", fullname: "Administrator"
 ```
 
 Back to your browser then login with this user.
